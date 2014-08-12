@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<root>
+<item name="EU4txt"/>
+<item name="date" value="1777.10.2"/>
+<item name="player" value="FRA"/>
+<item name="savegame_version">
+<item name="first" value="1"/>
+<item name="second" value="6"/>
+<item name="third" value="2"/>
+<item name="forth" value="0"/>
+</item>
+<item name="dlc_enabled">
+<item name="100 Years War Unit Pack"/>
+<item name="Conquest of Paradise"/>
+<item name="Purple Phoenix"/>
+<item name="Wealth of Nations"/>
+</item>
+<item name="mod_enabled">
+<item name="Bigger Diplomacy View"/>
+<item name="Bigger Peace View"/>
+<item name="MapModeButtons"/>
+</item>
+<item name="used_colonial_names">
+<item name="Portuguese Brazil"/>
+<item name="Castilian West Indies"/>
+<item name="Newfoundland"/>
+<item name="Castilian La Plata"/>
+<item name="Portuguese Colombia"/>
+<item name="English West Indies"/>
+<item name="Portuguese Mexico"/>
+<item name="English Mexico"/>
+<item name="Portuguese Peru"/>
+<item name="Castilian Peru"/>
+<item name="English Louisiana"/>
+<item name="Florida"/>
+<item name="Portuguese Australia"/>
+<item name="California"/>
+<item name="Rio da Prata"/>
+</item>
+</root>

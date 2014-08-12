@@ -1,0 +1,41 @@
+EU4txt
+date="1777.10.2"
+player="FRA"
+savegame_version=
+{
+	first=1
+	second=6
+	third=2
+	forth=0
+}
+dlc_enabled=
+{
+"100 Years War Unit Pack"
+ "Conquest of Paradise"
+ "Purple Phoenix"
+ "Wealth of Nations"
+ }
+mod_enabled=
+{
+"Bigger Diplomacy View"
+ "Bigger Peace View"
+ "MapModeButtons"
+ }
+used_colonial_names=
+{
+"Portuguese Brazil"
+ "Castilian West Indies"
+ "Newfoundland"
+ "Castilian La Plata"
+ "Portuguese Colombia"
+ "English West Indies"
+ "Portuguese Mexico"
+ "English Mexico"
+ "Portuguese Peru"
+ "Castilian Peru"
+ "English Louisiana"
+ "Florida"
+ "Portuguese Australia"
+ "California"
+ "Rio da Prata"
+ }
