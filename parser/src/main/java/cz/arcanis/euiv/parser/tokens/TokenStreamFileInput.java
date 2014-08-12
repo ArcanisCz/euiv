@@ -23,7 +23,8 @@ public class TokenStreamFileInput implements ITokenStream {
 
         props.addPattern("\"[0-9]{4}\\.[0-9]{1,2}\\.[0-9]{1,2}\"", "date");
         props.addPattern("[0-9]{4}\\.[0-9]{1,2}\\.[0-9]{1,2}", "date");
-        props.addPattern("[0-9]+\\.[0-9]{3}", "number");
+        props.addPattern("[0-9]+\\.[0-9]{3,5}", "number");
+        props.addPattern("\\-\\-\\-");
         props.addString("\"", "\"", "\\");
 
         tokenizer = new StandardTokenizer(props);

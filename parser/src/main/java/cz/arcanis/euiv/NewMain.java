@@ -7,10 +7,11 @@ package cz.arcanis.euiv;
 
 import java.io.File;
 
-import cz.arcanis.euiv.parser.TreeConstructor;
+import cz.arcanis.euiv.parser.dom.TreeConstructor;
+import cz.arcanis.euiv.parser.tokens.chains.OnlySomeTopLevelSections;
+import cz.arcanis.euiv.parser.tokens.chains.OnlyTopLevels;
 import cz.arcanis.euiv.parser.tokens.chains.SaveEarlyEnder;
 import cz.arcanis.euiv.parser.tokens.TokenStreamFileInput;
-import de.susebox.jtopas.Token;
 import org.w3c.dom.Document;
 
 
@@ -24,18 +25,23 @@ public class NewMain {
      * @throws Exception
      */
     public static void main(String[] args) throws Exception {
-        File savegame = new File("../src/main/resources/pokus.eu4");
+        File savegame = new File("../src/main/resources/france.eu4");
 
         TokenStreamFileInput tokenizer = new TokenStreamFileInput(savegame);
-//        SaveEarlyEnder filter = new SaveEarlyEnder(tokenizer, "used_colonial_names");
+        SaveEarlyEnder filter = new SaveEarlyEnder(tokenizer, "previous_war");
+        OnlySomeTopLevelSections filter1 = new OnlySomeTopLevelSections(filter);
+        OnlyTopLevels filter2 = new OnlyTopLevels(filter1);
 
-//        while (!filter.isClosed()) {
-//            Token t = filter.next();
+//        int count = 0;
+//        while (!filter2.isClosed()) {
+//            Token t = filter2.next();
 //            System.out.println(t + " " + t.getCompanion());
+//            count++;
 //        }
+//        System.out.println("Tokens: " + count);
 
 
-        Document doc = TreeConstructor.createTree(tokenizer);
+        Document doc = TreeConstructor.createTree(filter2);
         TreeConstructor.prettyPrint(doc);
 
 

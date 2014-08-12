@@ -24,7 +24,7 @@ public abstract class AbstractTokenizerStreamChain implements ITokenStream {
                 if (!inStream.isClosed()) {
                     token = transform(inStream.next());
                 } else {
-                    return null;
+                    return new Token(Token.EOF);
                 }
             }
             return token;
