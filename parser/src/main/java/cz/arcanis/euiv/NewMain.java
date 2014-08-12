@@ -5,14 +5,16 @@
  */
 package cz.arcanis.euiv;
 
-import cz.arcanis.euiv.parser.TokenizerWrapper;
-import cz.arcanis.euiv.parser.TreeConstructor;
-import de.susebox.jtopas.Token;
 import java.io.File;
+
+import cz.arcanis.euiv.parser.TreeConstructor;
+import cz.arcanis.euiv.parser.tokens.chains.SaveEarlyEnder;
+import cz.arcanis.euiv.parser.tokens.TokenStreamFileInput;
+import de.susebox.jtopas.Token;
 import org.w3c.dom.Document;
 
+
 /**
- *
  * @author Arcanis
  */
 public class NewMain {
@@ -22,13 +24,20 @@ public class NewMain {
      * @throws Exception
      */
     public static void main(String[] args) throws Exception {
-        File savegame = new File("./src/main/resources/pokus.eu4");
-//        System.out.println(savegame.getAbsolutePath());
+        File savegame = new File("../src/main/resources/pokus.eu4");
 
-//        File savegame = new File("pokus.eu4");
-        Document doc =  TreeConstructor.createTree(savegame);
+        TokenStreamFileInput tokenizer = new TokenStreamFileInput(savegame);
+//        SaveEarlyEnder filter = new SaveEarlyEnder(tokenizer, "used_colonial_names");
+
+//        while (!filter.isClosed()) {
+//            Token t = filter.next();
+//            System.out.println(t + " " + t.getCompanion());
+//        }
+
+
+        Document doc = TreeConstructor.createTree(tokenizer);
         TreeConstructor.prettyPrint(doc);
-//
+
 
     }
 

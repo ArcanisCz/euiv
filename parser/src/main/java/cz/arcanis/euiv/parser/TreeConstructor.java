@@ -5,13 +5,13 @@
  */
 package cz.arcanis.euiv.parser;
 
+import cz.arcanis.euiv.parser.tokens.AbstractTokenizerStreamChain;
+import cz.arcanis.euiv.parser.tokens.ITokenStream;
 import de.susebox.jtopas.Token;
+
 import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
-import java.io.StringWriter;
 import java.io.Writer;
-import javax.management.RuntimeErrorException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.OutputKeys;
@@ -19,17 +19,17 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 /**
- *
  * @author Arcanis
  */
 public class TreeConstructor {
 
-    public static Document createTree(File file) throws Exception {
+    public static Document createTree(ITokenStream stream) throws Exception {
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = dbf.newDocumentBuilder();
         Document doc = builder.newDocument();
@@ -37,14 +37,13 @@ public class TreeConstructor {
         doc.appendChild(root);
 
         Node current = root;
-        TokenizerSectionFilter tokenizer = new TokenizerSectionFilter(new TokenizerWrapper(file));
 
-        while (!tokenizer.isEnded()) {
-            Token token = tokenizer.getNext();
+        while (!stream.isClosed()) {
+            Token token = stream.next();
 //            System.out.println("token " + token);           
             if (token.getType() == Token.EOF) {
             } else if ("=".equals(token.getImage())) {
-                Token token_value = tokenizer.getNext();
+                Token token_value = stream.next();
 //                System.out.println("value " + token_value);
                 if ("{".equals(token_value.getImage())) {
                     current = current.getLastChild();
@@ -76,7 +75,7 @@ public class TreeConstructor {
         Transformer tf = TransformerFactory.newInstance().newTransformer();
         tf.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
         tf.setOutputProperty(OutputKeys.INDENT, "yes");
-        Writer out = new FileWriter(new File("src/main/resources/out.xml"));
+        Writer out = new FileWriter(new File("../src/main/resources/out.xml"));
         tf.transform(new DOMSource(xml), new StreamResult(out));
     }
 
