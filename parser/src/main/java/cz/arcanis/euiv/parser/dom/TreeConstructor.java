@@ -11,12 +11,12 @@ import de.susebox.jtopas.Token;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.Writer;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.*;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
@@ -29,7 +29,7 @@ import org.w3c.dom.Node;
  */
 public class TreeConstructor {
 
-    public static Document createTree(ITokenStream stream) throws Exception {
+    public static Document createTree(ITokenStream stream) throws ParserConfigurationException {
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = dbf.newDocumentBuilder();
         Document doc = builder.newDocument();
@@ -69,14 +69,6 @@ public class TreeConstructor {
         }
 
         return doc;
-    }
-
-    public static final void prettyPrint(Document xml) throws Exception {
-        Transformer tf = TransformerFactory.newInstance().newTransformer();
-        tf.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
-        tf.setOutputProperty(OutputKeys.INDENT, "yes");
-        Writer out = new FileWriter(new File("../src/main/resources/out.xml"));
-        tf.transform(new DOMSource(xml), new StreamResult(out));
     }
 
     public static String trimDoubleQuotes(String text) {

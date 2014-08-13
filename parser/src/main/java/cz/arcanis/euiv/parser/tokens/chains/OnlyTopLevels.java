@@ -12,11 +12,12 @@ import de.susebox.jtopas.Token;
  * To change this template use File | Settings | File Templates.
  */
 public class OnlyTopLevels extends AbstractTokenizerStreamChain {
-    private final int maxLevel = 3;
+    private final int maxLevel;
     private int depth = 0;
 
-    public OnlyTopLevels(ITokenStream inStream) {
+    public OnlyTopLevels(ITokenStream inStream, int maxLevel) {
         super(inStream);
+        this.maxLevel = maxLevel;
     }
 
     @Override

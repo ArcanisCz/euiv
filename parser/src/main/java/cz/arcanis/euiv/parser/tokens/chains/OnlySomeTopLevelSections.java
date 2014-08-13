@@ -4,6 +4,7 @@ import cz.arcanis.euiv.parser.tokens.AbstractTokenizerStreamChain;
 import cz.arcanis.euiv.parser.tokens.ITokenStream;
 import de.susebox.jtopas.Token;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -19,23 +20,9 @@ public class OnlySomeTopLevelSections extends AbstractTokenizerStreamChain {
     private int depth = 0;
     private String currentSection = "";
 
-    public OnlySomeTopLevelSections(ITokenStream inStream) {
+    public OnlySomeTopLevelSections(ITokenStream inStream, String[] blacklist) {
         super(inStream);
-        this.fillBlacklist();
-    }
-
-    private void fillBlacklist() {
-        blacklist.add("trade");
-        blacklist.add("rebel_faction");
-        blacklist.add("papacy");
-        blacklist.add("fired_events");
-        blacklist.add("provinces");
-//        blacklist.add("countries");
-        blacklist.add("active_advisors");
-        blacklist.add("diplomacy");
-        blacklist.add("combat");
-//        blacklist.add("active_war");
-
+        this.blacklist.addAll(Arrays.asList(blacklist));
     }
 
     @Override

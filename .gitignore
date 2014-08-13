@@ -1,3 +1,4 @@
 .idea/
 parser/target/parser-1.0-SNAPSHOT.jar
 parser/target/
+data/target/
