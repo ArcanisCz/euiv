@@ -22,11 +22,6 @@ public class OnlyTopLevels extends AbstractTokenizerStreamChain {
 
     @Override
     protected Token transform(Token token) {
-        if (token == null) {
-            this.close();
-            return new Token(Token.EOF);
-        }
-
         if ("{".equals(token.getImage())) {
             depth++;
         } else if ("}".equals(token.getImage())) {
