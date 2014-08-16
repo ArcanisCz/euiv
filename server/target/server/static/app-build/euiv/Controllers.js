@@ -1,0 +1,1 @@
+define(["./controller/MainController"],function(e){return angular.module("Controllers",[e.name])});

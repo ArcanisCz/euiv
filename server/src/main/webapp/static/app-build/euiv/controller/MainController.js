@@ -1,0 +1,1 @@
+define(["angular"],function(e){return e.module("MainController",[]).controller("MainController",["$scope",function(e){}])});

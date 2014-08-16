@@ -1,0 +1,1 @@
+define(["angular","./Controllers"],function(e,t){return e.module("euiv",["ngRoute","route-segment","view-segment",t.name])});
