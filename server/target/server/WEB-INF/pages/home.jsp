@@ -1,5 +1,15 @@
 <html>
+<head>
+    <script src="static/lib/require/require.js"></script>
+    <script type="text/javascript">
+        require(['./static/app/config'], function (config) {
+            require(['app/main']);
+        });
+    </script>
+</head>
+
 <body>
-	<h1>Home</h1>
+    <div app-view-segment="0"></div>
+    <div ng-show="loader.show">Loading...</div>
 </body>
 </html>
