@@ -54,6 +54,7 @@ public class Parser {
         OnlySomeTopLevelSections filter1 = new OnlySomeTopLevelSections(filter, blacklist);
         OnlyTopLevels filter2 = new OnlyTopLevels(filter1, maxDepth);
         Map doc = MapTreeConstructor.createTree(filter2);
+        tokenizer.close();
         return doc;
     }
 

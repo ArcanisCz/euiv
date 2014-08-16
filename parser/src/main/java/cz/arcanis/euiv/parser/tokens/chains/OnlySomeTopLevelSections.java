@@ -27,10 +27,13 @@ public class OnlySomeTopLevelSections extends AbstractTokenizerStreamChain {
 
     @Override
     protected Token transform(Token token) {
+
+
         if (token == null) {
             this.close();
             return new Token(Token.EOF);
         }
+
         if ("{".equals(token.getImage())) {
             depth++;
         } else if ("}".equals(token.getImage())) {
@@ -38,7 +41,7 @@ public class OnlySomeTopLevelSections extends AbstractTokenizerStreamChain {
         }
 
         if (depth == 0) {
-            if (token.getType() == Token.NORMAL) {
+            if (token.getType() == Token.NORMAL || token.getType() == Token.PATTERN) {
                 currentSection = token.getImage();
             }
         }

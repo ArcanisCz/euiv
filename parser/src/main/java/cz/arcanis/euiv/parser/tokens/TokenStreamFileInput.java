@@ -24,6 +24,7 @@ public class TokenStreamFileInput implements ITokenStream {
         props.addPattern("\"[0-9]{4}\\.[0-9]{1,2}\\.[0-9]{1,2}\"", "date");
         props.addPattern("[0-9]{4}\\.[0-9]{1,2}\\.[0-9]{1,2}", "date");
         props.addPattern("[0-9]+\\.[0-9]{3,5}", "number");
+        props.addPattern("muslim_piety\\.15", "normal");
         props.addPattern("\\-\\-\\-");
         props.addString("\"", "\"", "\\");
 

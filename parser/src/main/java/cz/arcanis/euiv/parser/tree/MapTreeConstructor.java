@@ -22,7 +22,7 @@ import java.util.*;
 public class MapTreeConstructor {
     public static Map<String, Object> createTree(ITokenStream stream) throws ParserConfigurationException {
 
-        Queue<LinkedMap<String, Object>> queue = new LinkedList<>();
+        Deque<LinkedMap<String, Object>> stack = new LinkedList<>();
 
         LinkedMap<String, Object> root = new LinkedMap<>();
         LinkedMap<String, Object> current = root;
@@ -30,18 +30,22 @@ public class MapTreeConstructor {
 
         while (!stream.isClosed()) {
             Token token = stream.next();
+//            System.out.println("token1 " + token);
             if (token.getType() == Token.EOF) {
                 //nothing
             } else if ("=".equals(token.getImage())) {
                 Token token_value = stream.next();
+//                System.out.println("token2 " + token_value);
                 if ("{".equals(token_value.getImage())) {
                     String key = current.lastKey();
                     LinkedMap<String, Object> newCurrent = new LinkedMap<>();
                     current.put(key, newCurrent);
-                    queue.add(current);
+                    stack.push(current);
                     current = newCurrent;
+//                    System.out.println(stack + " " + current);
                 } else if ("}".equals(token_value.getImage())) {
-                    current = queue.remove();
+                    current = stack.poll();
+//                    System.out.println(stack + " " + current);
                 } else {
                     String key = current.lastKey();
                     current.put(key, trimDoubleQuotes(token_value.getImage()));
@@ -50,11 +54,12 @@ public class MapTreeConstructor {
                 String key = current.lastKey();
                 LinkedMap<String, Object> newCurrent = new LinkedMap<>();
                 current.put(key, newCurrent);
-                queue.add(current);
+                stack.push(current);
                 current = newCurrent;
-
+//                System.out.println(stack + " " + current);
             } else if ("}".equals(token.getImage())) {
-                current = queue.remove();
+                current = stack.poll();
+//                System.out.println(stack + " " + current);
             } else {
                 current.put(trimDoubleQuotes(token.getImage()), null);
             }
@@ -71,8 +76,8 @@ public class MapTreeConstructor {
             if (textLength >= 2 && text.charAt(0) == '"' && text.charAt(textLength - 1) == '"') {
                 //return text.substring(1, textLength - 1);
                 return text;
-            }else{
-                return "\""+text+"\"";
+            } else {
+                return "\"" + text + "\"";
             }
         }
         return null;

@@ -35,6 +35,9 @@ public class NewMain {
         Map doc = Parser.getMapTree(savegame);
 
         String str = doc.toString();
+        FileWriter f = new FileWriter(new File("./out.txt"));
+        f.write(str);
+        f.close();
         str = str.replace("=", ":");
         return str;
     }
