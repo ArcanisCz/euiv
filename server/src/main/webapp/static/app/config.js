@@ -24,5 +24,8 @@ requirejs.config({
         'angularRoute': ['angular'],
         'angularSegment': ['angular'],
         'angularView': ['angular']
+    },
+    less: {
+        rootpath: "../"
     }
 });

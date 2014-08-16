@@ -1,24 +1,26 @@
 define([
     "./App",
-    "text!./view/MainLayout.html",
-    "text!./view/Content.html",
     "./controller/MainController",
+    "text!./view/LayoutView.html",
+    "text!./view/ContentView.html",
+    "less!./view/LayoutView.less",
+    "less!./view/ContentView.less",
     "angular",
     "angularRoute",
     "angularSegment",
     "angularView"
-], function (app, MainLayout, Content, MainController) {
+], function (app, MainController, LayoutView, ContentView) {
     return app.config(['$routeProvider', "$routeSegmentProvider", function ($routeProvider, $routeSegmentProvider) {
         $routeSegmentProvider
             .when('/', 's1')
             .segment('s1', {
-                template: MainLayout,
+                template: LayoutView,
                 controller: MainController.name
             })
             .within()
             .segment("home", {
                 default: true,
-                template: Content
+                template: ContentView
             })
             .up();
         $routeProvider.otherwise({redirectTo: '/'});
