@@ -10,10 +10,6 @@
     </script>
 </head>
 
-<body>
-<div app-view-segment="0"></div>
-<div id="loader" ng-show="loader.show">
-    <div>Loading...</div>
-</div>
+<body app-view-segment="0">
 </body>
 </html>

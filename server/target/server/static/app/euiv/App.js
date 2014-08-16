@@ -1,11 +1,15 @@
 define([
     'angular',
-    "./Controllers"
-], function (angular, Controllers) {
+    "./Controllers",
+    "./Services",
+    "./Components"
+], function (angular, Controllers, Services, Components) {
     return angular.module('euiv', [
         "ngRoute",
         'route-segment',
         'view-segment',
-        Controllers.name
+        Controllers.name,
+        Services.name,
+        Components.name
     ]);
 });

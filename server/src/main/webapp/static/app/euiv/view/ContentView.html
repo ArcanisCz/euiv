@@ -1,1 +1,5 @@
-<div id="ContentView">Sekce1</div>
+<div id="ContentView" ng-model-options="{ debounce: 500 }">
+    <div class="flag" ng-repeat="(code,country) in save.countries">
+        <country-flag code="code"></country-flag>
+    </div>
+</div>

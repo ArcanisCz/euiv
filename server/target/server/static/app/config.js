@@ -12,7 +12,8 @@ requirejs.config({
         angular: "angular/angular",
         angularRoute: 'angular/angular-route',
         angularSegment: 'angular/angular-route-segment',
-        angularView: 'angular/angular-view-segment'
+        angularView: 'angular/angular-view-segment',
+        async: "async/async"
     },
     map: {
         '*': {
@@ -26,6 +27,7 @@ requirejs.config({
         'angularView': ['angular']
     },
     less: {
-        rootpath: "../"
+        rootpath: "../",
+        env: "development"
     }
 });
